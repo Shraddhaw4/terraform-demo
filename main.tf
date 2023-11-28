@@ -54,7 +54,7 @@ resource "aws_instance" "tjinst" {
     ami = "ami-0b08bfc6ff7069aff"
     instance_type = "t2.micro"
     tags = {
-       Name = "TFJA-Instance"
+       Name = "Terraform-Instance"
     }
 }
 
