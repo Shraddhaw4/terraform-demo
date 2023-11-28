@@ -24,8 +24,15 @@ pipeline {
 
         stage('Plan') {
             steps {
-                sh 'pwd;cd terraform/ ; terraform plan'
+                sh 'pwd;cd terraform/ ; terraform plan -out myplan'
             }
+        }
+        stage('Approval') {
+            steps {
+              script {
+                def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
+            }
+          }
         }
         stage('Action') {
             steps {
