@@ -24,7 +24,13 @@ pipeline {
 
         stage('Plan') {
             steps {
-                sh 'pwd;cd terraform/ ; terraform plan -out myplan'
+              script {
+                  if (${action} == 'apply') {
+                      sh 'pwd;cd terraform/ ; terraform plan -out myplan'
+                  } else {
+                      sh 'pwd;cd terraform/ ; terraform plan -destroy -out myplan'
+                  }
+              }
             }
         }
         stage('Approval') {
