@@ -25,33 +25,16 @@ pipeline {
             }
         }
 
-        stage('Manual Step') {
-            steps('Input') {
-                echo "choice: ${CHOICE}"
-                echo "choice params.: " + params.CHOICE
-                echo "choice env: " + env.CHOICE
+        stage('Plan') {
+            script {
+                if (action == "apply"){
+                    sh 'pwd;cd terraform/ ; terraform plan -out myplan'
+                } else {
+                    sh 'pwd;cd terraform/ ; terraform plan -destroy -out myplan'
+                }
             }
         }
-
-        stage('Plan Apply') {
-            when {
-                expression { env.CHOICE == 'apply' }
-            }
-
-            steps('Execute')    {
-                sh 'pwd;cd terraform/ ; terraform plan -out myplan'
-            }
-        }
-
-        stage('Plan Destroy') {
-            when {
-                expression { env.CHOICE == 'destroy' }
-            }
-
-            steps('Execute')    {
-                sh 'pwd;cd terraform/ ; terraform plan -destroy -out myplan'
-            }
-        }
+        
         stage('Approval') {
             steps {
               script {
