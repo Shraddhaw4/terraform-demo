@@ -27,9 +27,9 @@ pipeline {
                 sh 'pwd;cd terraform/ ; terraform plan'
             }
         }
-        stage('Apply') {
+        stage('Action') {
             steps {
-                sh 'pwd;cd terraform/ ; terraform apply --auto-approve'
+                sh 'pwd;cd terraform/ ; terraform ${action} --auto-approve'
             }
         }
     }
