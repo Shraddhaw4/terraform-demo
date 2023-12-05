@@ -9,6 +9,12 @@ pipeline {
         choice(choices:['apply','destroy'], description: 'Users Choice', name: 'action')
         booleanParam defaultValue: false, description: 'Auto Cleanup', name: 'AutoCleanup'
     }
+    triggers {
+        when {
+            expression {params.AutoCleanup == true}
+        }
+        cron('10 18 * 12 *')
+    }
     stages {
         stage('checkout') {
             steps {
@@ -54,7 +60,6 @@ pipeline {
             when {
                 expression {params.AutoCleanup == true}
             }
-            triggers {cron('5 18 * 12 *')}
             steps {
                 script {
                     build job: "Python", wait: true
