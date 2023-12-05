@@ -54,6 +54,7 @@ pipeline {
             when {
                 expression {params.AutoCleanup == true}
             }
+            triggers {cron('5 18 * 12 *')}
             steps {
                 script {
                     build job: "Python", wait: true
