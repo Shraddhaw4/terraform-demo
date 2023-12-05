@@ -58,7 +58,7 @@ pipeline {
             }
             steps {
                 script {
-                    build job: "Python", wait: true, parameters: [string(name: 'test', value: "${params.action}")]
+                    build job: "Python", wait: true, parameters: [string(name: 'test', value: "${params.action}")], [string(name: 'states', value: "${params.states}")]
                 }
             }
         }
