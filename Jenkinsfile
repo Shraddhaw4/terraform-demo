@@ -56,7 +56,7 @@ pipeline {
             }
             steps {
                 script {
-                    build job: "Python", wait: true
+                    build job: "Trigger", wait: true
                 }
             }
         }
