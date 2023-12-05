@@ -8,6 +8,7 @@ pipeline {
    parameters {
         choice(choices:['apply','destroy'], description: 'Users Choice', name: 'action')
         booleanParam defaultValue: false, description: 'Auto Cleanup', name: 'AutoCleanup'
+        extendedChoice name: 'states', description: 'Choose one state', defaultValue: 'mah', type: 'PT_RADIO', descriptionPropertyValue: 'Maharashtra,Gujarat,Dehradun', value: 'mah,guj,deh'
     }
     stages {
         stage('checkout') {
@@ -22,6 +23,7 @@ pipeline {
             }
        stage('Init') {
             steps {
+                sh 'echo ${states}'
                 sh 'pwd;cd terraform/ ; terraform init'
             }
         }
