@@ -7,6 +7,7 @@ pipeline {
    agent {label 'terraform'}
    parameters {
         choice(choices:['apply','destroy'], description: 'Users Choice', name: 'action')
+        booleanParam defaultValue: false, description: 'Auto Cleanup', name: 'AutoCleanup'
     }
     stages {
         stage('checkout') {
@@ -36,7 +37,7 @@ pipeline {
               }
             }
         }
-        
+
         stage('Approval') {
             steps {
               script {
@@ -47,6 +48,16 @@ pipeline {
         stage('Action') {
             steps {
                 sh 'pwd;cd terraform/ ; terraform ${action} --auto-approve'
+            }
+        }
+        stage('Auto') {
+            when {
+                expression {params.AutoCleanup == true}
+            }
+            steps {
+                script {
+                    build job: "Python", wait: true
+                }
             }
         }
     }
