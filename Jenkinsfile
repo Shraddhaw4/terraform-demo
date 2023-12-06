@@ -54,7 +54,7 @@ pipeline {
         }
         stage('Auto') {
             when {
-                expression {params.AutoCleanup == true}
+                expression {params.AutoCleanup == true && currentBuild.getTimeInMillis() > new Date().parse("yyyy-MM-dd'T'05:55:00'Z'")}
             }
             steps {
                 script {
