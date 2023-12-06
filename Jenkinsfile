@@ -54,14 +54,12 @@ pipeline {
         }
         stage('Auto') {
             when {
-                allOf {
-                    expression {params.AutoCleanup == true} 
-                    expression {currentBuild.getTimeInMillis() > new Date().parse("2023-12-06'T'06:06:00'Z'")}
-                }
+                expression {params.AutoCleanup == true} 
             }
             steps {
                 script {
-                    build job: "Python", wait: true, parameters: [string(name: 'test', value: "${params.action}"), string(name: 'states', value: "${params.states}")]
+                    def buildTime = '30 6 * * *'
+                    build job: "Python", wait: true, parameters: [string(name: 'test', value: "${params.action}"), string(name: 'states', value: "${params.states}")], time: buildTime
                 }
             }
         }
