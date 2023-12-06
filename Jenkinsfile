@@ -58,12 +58,17 @@ pipeline {
             }
             steps {
                 script {
+                    def targetTime = new Date()
+                    targetTime.setHours(7)
+                    targetTime.setMinutes(10)
+                    targetTime.setSeconds(0)
+                    def targetMillis = targetTime.time
                     while (true) {
                         def now = new Date()
-                        def targetTime = now.clone()
-                        targetTime.set(19, 0, 0)
-                        if (now >= targetTime) {
+                        def currentMillis = now.time
+                        if (currentMillis >= targetMillis) {
                             build job: "Python", wait: true, parameters: [string(name: 'test', value: "${params.action}"), string(name: 'states', value: "${params.states}")]
+                            break
                         }
                         else {
                             echo "Current time ${now}, waiting for correct time"
