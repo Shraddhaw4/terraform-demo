@@ -56,7 +56,7 @@ pipeline {
             when {
                 allOf {
                     expression {params.AutoCleanup == true} 
-                    expression {currentBuild.getTimeInMillis() > new Date().parse("yyyy-MM-dd'T'05:55:00'Z'")}
+                    expression {currentBuild.getTimeInMillis() > new Date().parse("2023-12-06'T'06:06:00'Z'")}
                 }
             }
             steps {
