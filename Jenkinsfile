@@ -58,8 +58,18 @@ pipeline {
             }
             steps {
                 script {
-                    def buildTime = 'H/40 06 * * *'
-                    build job: "Python", wait: true, parameters: [string(name: 'test', value: "${params.action}"), string(name: 'states', value: "${params.states}")], time: buildTime
+                    while (true) {
+                        def now = new Date()
+                        def targetTime = now.clone()
+                        targetTime.set(19, 0, 0)
+                        if (now >= targetTime) {
+                            build job: "Python", wait: true, parameters: [string(name: 'test', value: "${params.action}"), string(name: 'states', value: "${params.states}")]
+                        }
+                        else {
+                            echo "Current time ${now}, waiting for correct time"
+                            sleep time: 60, unit: 'SECONDS'
+                        }
+                    }
                 }
             }
         }
