@@ -58,7 +58,7 @@ pipeline {
             }
             steps {
                 script {
-                    def buildTime = '35 6 * * *'
+                    def buildTime = 'H/40 06 * * *'
                     build job: "Python", wait: true, parameters: [string(name: 'test', value: "${params.action}"), string(name: 'states', value: "${params.states}")], time: buildTime
                 }
             }
