@@ -5,6 +5,9 @@ pipeline {
     }
 
    agent {label 'terraform'}
+   tools {
+    terraform 'terraform'
+   }
    parameters {
         choice(choices:['apply','destroy'], description: 'Users Choice', name: 'action')
         booleanParam defaultValue: false, description: 'Auto Cleanup', name: 'AutoCleanup'
