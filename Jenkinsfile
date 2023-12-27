@@ -4,7 +4,7 @@ pipeline {
           AWS_SECRET_ACCESS_KEY = credentials('AWS_credentials')
     }
 
-   agent {label 'terraform'}
+   agent {label 'packer'}
     tools {
         terraform 'terraform'
    }
