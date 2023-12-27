@@ -53,6 +53,7 @@ resource "aws_route_table_association" "terraform_public" {
 resource "aws_instance" "tjinst" {
     ami = "ami-0b08bfc6ff7069aff"
     instance_type = "t2.micro"
+    key_name = "Jenkins-Server"
     tags = {
        Name = "Terraform-Instance"
     }
