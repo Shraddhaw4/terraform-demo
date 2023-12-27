@@ -56,6 +56,7 @@ resource "aws_instance" "tjinst" {
     key_name = "Jenkins-Server"
     tags = {
        Name = "Terraform-Instance"
+       Env = "Dev"
     }
 }
 
