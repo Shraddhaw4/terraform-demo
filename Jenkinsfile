@@ -11,7 +11,7 @@ pipeline {
    parameters {
         choice(choices:['apply','destroy'], description: 'Users Choice', name: 'action')
         booleanParam defaultValue: false, description: 'Auto Cleanup', name: 'AutoCleanup'
-        extendedChoice name: 'states', description: 'Choose one state', defaultValue: 'mah', type: 'PT_RADIO', descriptionPropertyValue: 'Maharashtra,Gujarat,Dehradun', value: 'mah,guj,deh'
+        extendedChoice name: 'states', description: 'Choose one state', defaultValue: 'mah', type: 'PT_RADIO', descriptionPropertyValue: 'Maharashtra,Gujarat,Karnataka', value: 'mah,guj,kar'
     }
     stages {
         stage('checkout') {
