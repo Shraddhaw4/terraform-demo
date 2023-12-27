@@ -16,12 +16,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                 script{
-                        dir("terraform")
-                        {
-                            git "https://github.com/Shraddhaw4/terraform-demo.git"
-                        }
-                    }
+                 git branch: 'dev', url: 'https://github.com/Shraddhaw4/terraform-demo.git'
                 }
             }
        stage('Init') {
