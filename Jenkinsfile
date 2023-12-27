@@ -19,8 +19,7 @@ pipeline {
                  script{
                         dir("terraform")
                         {
-                            git url: "https://github.com/Shraddhaw4/terraform-demo.git",
-                            git branch: "dev"
+                            git "https://github.com/Shraddhaw4/terraform-demo.git"
                         }
                     }
                 }
