@@ -2,7 +2,7 @@ pipeline {
     environment {
           AWS_ACCESS_KEY_ID     = credentials('AWS_credentials')
           AWS_SECRET_ACCESS_KEY = credentials('AWS_credentials')
-          tool name: 'terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+          TF_HOME = tool name: 'terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
     }
 
    agent {label 'packer'}
