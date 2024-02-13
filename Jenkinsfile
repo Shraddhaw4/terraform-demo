@@ -4,7 +4,7 @@ pipeline {
           AWS_SECRET_ACCESS_KEY = credentials('shraddha-creds')
     }
 
-   agent any
+   agent {label 'terraform'}
    parameters {
         choice(choices:['apply','destroy'], description: 'Users Choice', name: 'action')
         booleanParam defaultValue: false, description: 'Auto Cleanup', name: 'AutoCleanup'
