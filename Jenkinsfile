@@ -1,11 +1,11 @@
 pipeline {
     environment {
-          AWS_ACCESS_KEY_ID     = credentials('AWS_credentials')
-          AWS_SECRET_ACCESS_KEY = credentials('AWS_credentials')
+          AWS_ACCESS_KEY_ID     = credentials('shraddha-creds')
+          AWS_SECRET_ACCESS_KEY = credentials('shraddha-creds')
           TF_HOME = tool name: 'terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
     }
 
-   agent {label 'packer'}
+   agent any
    parameters {
         choice(choices:['apply','destroy'], description: 'Users Choice', name: 'action')
         booleanParam defaultValue: false, description: 'Auto Cleanup', name: 'AutoCleanup'
