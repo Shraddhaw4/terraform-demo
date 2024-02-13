@@ -2,7 +2,6 @@ pipeline {
     environment {
           AWS_ACCESS_KEY_ID     = credentials('shraddha-creds')
           AWS_SECRET_ACCESS_KEY = credentials('shraddha-creds')
-          TF_HOME = tool name: 'terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
     }
 
    agent any
