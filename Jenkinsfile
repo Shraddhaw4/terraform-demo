@@ -1,7 +1,7 @@
 pipeline {
     environment {
-          AWS_ACCESS_KEY_ID     = credentials('shraddha-creds')
-          AWS_SECRET_ACCESS_KEY = credentials('shraddha-creds')
+          AWS_ACCESS_KEY_ID     = credentials('AWS_credentials')
+          AWS_SECRET_ACCESS_KEY = credentials('AWS_credentials')
     }
 
    agent {label 'terraform'}
