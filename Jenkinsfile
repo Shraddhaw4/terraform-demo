@@ -42,7 +42,7 @@ pipeline {
             steps {
               script {
                 if (action == "apply"){
-                    sh 'pwd;cd terraform/ ; terraform plan -out myplan'
+                    sh 'pwd;cd terraform/ ; terraform plan -out myplan -var 'user=${USER_ID}'
                 } else {
                     sh 'pwd;cd terraform/ ; terraform plan -destroy -out myplan'
                 }
@@ -59,7 +59,7 @@ pipeline {
         }
         stage('Action') {
             steps {
-                sh 'pwd;cd terraform/ ; terraform ${action} --auto-approve'
+                sh 'pwd;cd terraform/ ; terraform ${action} -var 'user=${USER_ID}' --auto-approve'
             }
         }
         stage('Auto') {
