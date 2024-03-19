@@ -2,6 +2,10 @@ provider "aws" {
     region = "ap-south-1"
 }
 
+variable "user" {
+    type = string
+}
+
 resource "aws_vpc" "terraform_vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
@@ -21,6 +25,7 @@ resource "aws_subnet" "Terraform_public_subnet" {
 
   tags = {
     Name = "Terraform_public_subnet"
+    User = var.user
   }
 }
 
