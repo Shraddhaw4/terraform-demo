@@ -21,6 +21,16 @@ pipeline {
                     }
                 }
             }
+        stage('User') {
+            steps {
+                wrap([$class: 'BuildUser']) {
+                  script {
+                     USER_ID = "${BUILD_USER}"
+                  }
+                }
+                echo "User is : ${USER_ID}"
+            }
+        }
        stage('Init') {
             steps {
                 sh 'echo ${states}'
