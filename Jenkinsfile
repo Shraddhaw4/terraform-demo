@@ -59,7 +59,7 @@ pipeline {
         }
         stage('Action') {
             steps {
-                sh 'pwd;cd terraform/ ; terraform ${action} -var 'user=${USER_ID}' --auto-approve'
+                sh 'pwd;cd terraform/ ; terraform ${action} -var="user=${USER_ID}" --auto-approve'
             }
         }
         stage('Auto') {
