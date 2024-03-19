@@ -42,7 +42,7 @@ pipeline {
             steps {
               script {
                 if (action == "apply"){
-                    sh 'pwd;cd terraform/ ; terraform plan -out myplan -var 'user=${USER_ID}'
+                    sh 'pwd;cd terraform/ ; terraform plan -out myplan -var 'user=${USER_ID}''
                 } else {
                     sh 'pwd;cd terraform/ ; terraform plan -destroy -out myplan'
                 }
